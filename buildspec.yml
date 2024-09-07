@@ -7,7 +7,7 @@ phases:
     commands:
       - yum update -y
       - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-      - yum install -y libzip-dev
+      - yum install -y libzip-devel
       - curl -sS https://getcomposer.org/installer -o composer-setup.php
       - php composer-setup.php --install-dir=/usr/local/bin --filename=composer
   pre_build:
