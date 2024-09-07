@@ -15,22 +15,29 @@ class WeatherController extends Controller
 
         $topics = DB::table('topics')->get();
         // Take one entry from the db
-        foreach($topics as $topic){
-            // Get weather for the city
-            $latitude = $topic->latitude;
-            $longitude = $topic->longitude;
-            $topicArn = $topic->topicArn;
-            $city = $topic->city;
-            $weatherData = $this->getCurrentWeather($latitude, $longitude);
-            $weatherDataString = implode(" ", $weatherData);
 
-            // Create the message
-            $message = $city.'Weather Today '.$weatherDataString;
+        if (!$topics->isEmpty()) {
+            foreach($topics as $topic) {
+                // Get weather for the city
+                $latitude = $topic->latitude;
+                $longitude = $topic->longitude;
+                $topicArn = $topic->topicArn;
+                $city = $topic->city;
+                $weatherData = $this->getCurrentWeather($latitude, $longitude);
+                $weatherDataString = implode(" ", $weatherData);
 
-            // Publish the message to the topic relevant tp the city
-            $action = new SendNotificationsAction();
-            $notification = $action->publishMessage($topicArn, $message);
+                // Create the message
+                $message = $city.'Weather Today '.$weatherDataString;
 
+                // Publish the message to the topic relevant tp the city
+                $action = new SendNotificationsAction();
+                $notification = $action->publishMessage($topicArn, $message);
+
+            }
+        } else {
+            return response()->json([
+                'message' => 'No topics in db',
+            ]);
         }
 
     }
