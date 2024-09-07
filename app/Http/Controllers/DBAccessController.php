@@ -15,4 +15,8 @@ class DBAccessController extends Controller
             'topics' => $topics,
         ]);
     }
+
+    public function destroyTopic($id) {
+        DB::table('topics')->where('id', $id)->delete();
+    }
 }
