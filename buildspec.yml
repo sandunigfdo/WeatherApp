@@ -5,7 +5,7 @@ phases:
     runtime-versions:
       php: 8.3
     commands:
-      - yup update -y
+      - yum update -y
       - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
       - yum install -y libzip-dev
       - curl -sS https://getcomposer.org/installer -o composer-setup.php
