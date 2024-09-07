@@ -23,5 +23,6 @@ Route::get('/hello', function () {
     return response()->json('Hi, there!');
 });
 
-Route::get('/topics', [DBAccessController::class, 'getDBData'])->name('db');
+Route::get('/topics', [DBAccessController::class, 'getDBData'])->name('topics');
+Route::delete('/topics/{topic}', [DBAccessController::class, 'destroyTopic'])->name('topics.destroy');
 
