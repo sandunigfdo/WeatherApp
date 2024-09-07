@@ -1,6 +1,7 @@
 <?php
 
 use App\Actions\SendNotificationsAction;
+use App\Http\Controllers\DBAccessController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\UserCreatedWebhookController;
 use App\Http\Controllers\WeatherController;
@@ -21,3 +22,6 @@ Route::post('/send_message', [NotificationsController::class, 'sendNotification'
 Route::get('/hello', function () {
     return response()->json('Hi, there!');
 });
+
+Route::get('/topics', [DBAccessController::class, 'getDBData'])->name('db');
+
