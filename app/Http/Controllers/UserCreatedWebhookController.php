@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class UserCreatedWebhookController extends Controller
 {
+    // Get the data from the request body
     public function execute(Request $request){
         $city_name = $request->city;
         $latitude = $request->latitude;
