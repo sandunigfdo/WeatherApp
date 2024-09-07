@@ -17,3 +17,7 @@ Route::get('/test', [SendNotificationsAction::class, 'execute'])->name('test');
 Route::post('/user_created', [UserCreatedWebhookController::class, 'execute'])->name('user_created');
 
 Route::post('/send_message', [NotificationsController::class, 'sendNotification'])->name('send_message');
+
+Route::get('/hello', function () {
+    return response()->json('Hi, there!');
+});
