@@ -949,6 +949,20 @@
                                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                                                 <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                             </td>
+                                            <td class="relative whitespace-nowrap border-gray-200 py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-8 lg:pr-8">
+                                                <div class="flex space-x-10">
+                                                    <form method="POST" action="{{ route('topics.destroy',$topic->id) }}">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"
+                                                                onclick="return confirm('Are you sure you want to delete this topic?')"
+                                                                class="text-red-600 hover:text-red-900">Delete
+                                                        </button>
+
+                                                    </form>
+                                                </div>
+                                            </td>
+
                                         </tr>
                                     @endforeach
 
