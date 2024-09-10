@@ -34,6 +34,10 @@ class WeatherController extends Controller
                 $notification = $action->publishMessage($topicArn, $message);
 
             }
+
+            return response()->json([
+                'message' => 'Message sent to all subscribers',
+            ]);
         } else {
             return response()->json([
                 'message' => 'No topics in db',
@@ -41,6 +45,7 @@ class WeatherController extends Controller
         }
 
     }
+
     public function getCurrentWeather($latitude, $longitude){
         try {
             $response = Http::get('https://api.open-meteo.com/v1/forecast', [
