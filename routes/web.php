@@ -13,17 +13,7 @@ Route::get('/', function () {
 
 Route::get('/weather', [WeatherController::class, 'getWeatherData'])->name('weather');
 
-Route::get('/test', [SendNotificationsAction::class, 'execute'])->name('test');
-
 Route::post('/user_created', [UserCreatedWebhookController::class, 'execute'])->name('user_created');
-
-Route::post('/send_message', [NotificationsController::class, 'sendNotification'])->name('send_message');
-
-Route::get('/hello', function () {
-    return response()->json('Hi, there!');
-});
-
-Route::get('/latlong', [UserCreatedWebhookController::class, 'getLatLong'])->name('latlong');
 
 Route::get('/topics', [DBAccessController::class, 'getDBData'])->name('topics');
 Route::delete('/topics/{topic}', [DBAccessController::class, 'destroyTopic'])->name('topics.destroy');
