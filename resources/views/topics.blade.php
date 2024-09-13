@@ -942,27 +942,15 @@
                                             </td>
                                             <td class="relative whitespace-nowrap border-gray-200 py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-8 lg:pr-8">
                                                 <div class="flex space-x-10">
-                                                    @if(env('APP_ENV') === 'production')
-                                                        <form method="POST" action="{{ url('/index.php/topics', $topic->id) }}">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button type="submit"
-                                                                    onclick="return confirm('Are you sure you want to delete this topic?')"
-                                                                    class="text-red-600 hover:text-red-900">Delete
-                                                            </button>
+                                                    <form method="POST" action="{{ url('/topics', $topic->id) }}">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit"
+                                                                onclick="return confirm('Are you sure you want to delete this topic?')"
+                                                                class="text-red-600 hover:text-red-900">Delete
+                                                        </button>
 
-                                                        </form>
-                                                    @else
-                                                        <form method="POST" action="{{ url('/topics', $topic->id) }}">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button type="submit"
-                                                                    onclick="return confirm('Are you sure you want to delete this topic?')"
-                                                                    class="text-red-600 hover:text-red-900">Delete
-                                                            </button>
-
-                                                        </form>
-                                                    @endif
+                                                    </form>
                                                 </div>
                                             </td>
 

@@ -16,11 +16,6 @@ Route::post('/user-created-webhook', [UserCreatedWebhookController::class, 'exec
 
 Route::get('/send-notifications', [WeatherController::class, 'getWeatherData'])->name('weather');
 
-if (env('APP_ENV') === 'production') {
-    Route::get('/index.php/topics', [DBAccessController::class, 'getDBData'])->name('topics');
-    Route::delete('/index.php/topics/{topic}', [DBAccessController::class, 'destroyTopic'])->name('topics.destroy');
-} else {
-    Route::get('/topics', [DBAccessController::class, 'getDBData'])->name('topics');
-    Route::delete('/topics/{topic}', [DBAccessController::class, 'destroyTopic'])->name('topics.destroy');
-}
+Route::get('/topics', [DBAccessController::class, 'getDBData'])->name('topics');
+Route::delete('/topics/{topic}', [DBAccessController::class, 'destroyTopic'])->name('topics.destroy');
 
