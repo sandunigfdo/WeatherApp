@@ -98,5 +98,6 @@ class UserCreatedWebhookController extends Controller
         $action = new AddSubscriberAction();
         $response = $action->subscribeEmail($email, $topic_arn);
 
+        return response()->json(['message' => 'ok']);
     }
 }
