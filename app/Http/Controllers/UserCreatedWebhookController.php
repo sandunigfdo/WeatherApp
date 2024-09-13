@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Actions\AddSubscriberAction;
 use App\Actions\CreateTopicAction;
-use App\Actions\GetTopicNameAction;
-use App\Actions\ListTopicsAction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -17,7 +15,6 @@ class UserCreatedWebhookController extends Controller
     public function getlatlong($city_name)
     {
         // Data needed to get latitude and longitude
-//        $city_name = $request->input('city');
         $api_key = env("GEOAPIFY_API_KEY");
         $type = 'city';
         $filter = 'countrycode:nz';
@@ -43,24 +40,26 @@ class UserCreatedWebhookController extends Controller
                 ];
 
             }
-            else{
+            else {
                 throw new \Exception('Failed to fetch latitude and longitude');
             }
 
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
+            return [];
         }
     }
 
     // Get the data from the POST request body
-    public function execute(Request $request){
+    public function execute(Request $request)
+    {
         $city_name = $request->city;
         $email = $request->email;
 
         // Call getlatlong to fetch latitude and longitude
         $latlong = $this->getlatlong($city_name);
 
-        if ($latlong){
+        if ($latlong) {
             $latitude = $latlong['latitude'];
             $longitude = $latlong['longitude'];
         }
@@ -78,7 +77,7 @@ class UserCreatedWebhookController extends Controller
 
         if(!$city){
             // City Not Found
-            //Create a new Topic
+            // Create a new Topic
             $new_topic = new CreateTopicAction();
             $topic = $new_topic->createTopic($topic_name);
             $topic_arn = $topic['TopicArn'];

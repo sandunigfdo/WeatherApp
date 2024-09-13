@@ -5,7 +5,8 @@ use Aws\Exception\AwsException;
 
 class CreateTopicAction
 {
-    public function createTopic(string $topicName){
+    public function createTopic(string $topicName)
+    {
         $sns = new SnsClient([
             'region' => env('AWS_DEFAULT_REGION'),
             'version' => 'latest',
@@ -20,8 +21,9 @@ class CreateTopicAction
             ]);
             return $result;
 
-        }catch (AwsException $e){
+        } catch (AwsException $e) {
             error_log($e->getMessage());
+            return '';
         }
     }
 }

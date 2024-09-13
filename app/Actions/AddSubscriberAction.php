@@ -17,7 +17,6 @@ class AddSubscriberAction
         ]);
 
         $protocol = 'email';
-//        $topic = 'arn:aws:sns:us-east-1:211125694447:WeatherAlert';
 
         try {
             $result = $sns->subscribe([
