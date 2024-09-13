@@ -946,9 +946,6 @@
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 {{ $topic->topicArn }}
                                             </td>
-                                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                            </td>
                                             <td class="relative whitespace-nowrap border-gray-200 py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-8 lg:pr-8">
                                                 <div class="flex space-x-10">
                                                     <form method="POST" action="{{ route('topics.destroy',$topic->id) }}">
