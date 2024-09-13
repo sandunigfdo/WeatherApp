@@ -18,5 +18,11 @@ class DBAccessController extends Controller
 
     public function destroyTopic($id) {
         DB::table('topics')->where('id', $id)->delete();
+
+        if (env('APP_ENV') === 'production') {
+                    return redirect('/index.php/topics');
+        } else {
+            return redirect('/topics');
+        }
     }
 }
