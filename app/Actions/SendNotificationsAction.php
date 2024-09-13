@@ -1,10 +1,7 @@
 <?php
 namespace App\Actions;
-use App\Actions\AddSubscriberAction;
-use App\Http\Controllers\WeatherController;
 use Aws\Sns\SnsClient;
 use Aws\Exception\AwsException;
-use App\Actions\GetSubscribersAction;
 
 class SendNotificationsAction
 {
@@ -25,8 +22,6 @@ class SendNotificationsAction
                 'Message' => $message,
                 'TargetArn' => $topic,
             ]);
-
-            var_dump($response);
 
         } catch(AwsException $e) {
             error_log("Aws Exception: ".$e->getMessage());

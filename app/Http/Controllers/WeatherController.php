@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Actions\SendNotificationsAction;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use function Laravel\Prompts\error;
 
 class WeatherController extends Controller
 {
@@ -57,11 +55,9 @@ class WeatherController extends Controller
             ]);
             if ($response->successful()) {
                  $data = $response->json();
-//                 dd($data);
                  return[
                      'temperature' => $data['current_weather']['temperature'],
-                     'wind_speed' => $data['current_weather']['windspeed'],
-                     ''
+                     'wind_speed' => $data['current_weather']['windspeed']
                  ];
             }
             else{
