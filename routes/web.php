@@ -23,6 +23,8 @@ Route::get('/hello', function () {
     return response()->json('Hi, there!');
 });
 
+Route::get('/latlong', [UserCreatedWebhookController::class, 'getLatLong'])->name('latlong');
+
 Route::get('/topics', [DBAccessController::class, 'getDBData'])->name('topics');
 Route::delete('/topics/{topic}', [DBAccessController::class, 'destroyTopic'])->name('topics.destroy');
 
