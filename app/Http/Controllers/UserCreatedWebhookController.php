@@ -55,9 +55,19 @@ class UserCreatedWebhookController extends Controller
     // Get the data from the POST request body
     public function execute(Request $request){
         $city_name = $request->city;
-        $latitude = $request->latitude;
-        $longitude = $request->longitude;
         $email = $request->email;
+
+        // Call getlatlong to fetch latitude and longitude
+        $latlong = $this->getlatlong($city_name);
+
+        if ($latlong){
+            $latitude = $latlong['latitude'];
+            $longitude = $latlong['longitude'];
+        }
+        else{
+            // Handle the error if latitude and longitude is null
+            return response()->json(['error' => 'Unable to fetch latitude and longitude'], 500);
+        }
 
         $topic_name = 'WeatherAlert'.$city_name;
 
