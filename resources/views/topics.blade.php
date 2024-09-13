@@ -892,7 +892,7 @@
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
                             <h1 class="text-base font-semibold leading-6 text-gray-900">Topics</h1>
-                            <p class="mt-2 text-sm text-gray-700">A list of all topics in the storage NOT IN AWS.</p>
+                            <p class="mt-2 text-sm text-gray-700">A list of all topics in the storage (but this does not guarantee that all these topics are in AWS SNS).</p>
                         </div>
                     </div>
                     <div class="mt-8 flow-root">
