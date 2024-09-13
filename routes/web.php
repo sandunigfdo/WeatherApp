@@ -1,8 +1,6 @@
 <?php
 
-use App\Actions\SendNotificationsAction;
 use App\Http\Controllers\DBAccessController;
-use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\UserCreatedWebhookController;
 use App\Http\Controllers\WeatherController;
 use Illuminate\Support\Facades\Route;
