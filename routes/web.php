@@ -9,9 +9,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/user_created', [UserCreatedWebhookController::class, 'execute'])->name('user_created');
+Route::post('/user-created-webhook', [UserCreatedWebhookController::class, 'execute'])->name('user_created');
 
-Route::get('/weather', [WeatherController::class, 'getWeatherData'])->name('weather');
+Route::get('/send-notifications', [WeatherController::class, 'getWeatherData'])->name('weather');
 
 Route::get('/topics', [DBAccessController::class, 'getDBData'])->name('topics');
 Route::delete('/topics/{topic}', [DBAccessController::class, 'destroyTopic'])->name('topics.destroy');
