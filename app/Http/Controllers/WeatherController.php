@@ -25,7 +25,10 @@ class WeatherController extends Controller
                 $weatherDataString = implode(" ", $weatherData);
 
                 // Create the message
-                $message = $city.'Weather Today '.$weatherDataString;
+                $message = sprintf('The temperature in %s is currently %s°C, and the wind speed is %skm/h.',
+                    $city,
+                    $weatherData['temperature'],
+                    $weatherData['wind_speed']);
 
                 // Publish the message to the topic relevant tp the city
                 $action = new SendNotificationsAction();
