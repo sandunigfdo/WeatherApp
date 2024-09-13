@@ -8,10 +8,51 @@ use App\Actions\GetTopicNameAction;
 use App\Actions\ListTopicsAction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class UserCreatedWebhookController extends Controller
 {
-    // Get the data from the request body
+    // Get the lat and long form GeoAPI
+    public function getlatlong($city_name)
+    {
+        // Data needed to get latitude and longitude
+//        $city_name = $request->input('city');
+        $api_key = env("GEOAPIFY_API_KEY");
+        $type = 'city';
+        $filter = 'countrycode:nz';
+
+        try {
+            $response = Http::get('https://api.geoapify.com/v1/geocode/search', [
+                'text' => $city_name,
+                'apiKey' => $api_key,
+                'type' => $type,
+                'filter' => $filter,
+            ]);
+
+            if ($response->successful()) {
+                 $data = $response->json();
+
+                // Extract lat and lon
+                $latitude = $data['features'][0]['properties']['lat'];
+                $longitude = $data['features'][0]['properties']['lon'];
+
+                return [
+                    'latitude' => $latitude,
+                    'longitude' => $longitude,
+                ];
+
+            }
+            else{
+                throw new \Exception('Failed to fetch latitude and longitude');
+            }
+
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+        }
+    }
+
+    // Get the data from the POST request body
     public function execute(Request $request){
         $city_name = $request->city;
         $latitude = $request->latitude;
