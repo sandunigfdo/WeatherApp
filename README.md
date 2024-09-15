@@ -40,7 +40,7 @@
    - In the AWS Management Console, search for **CodePipeline** and click **Create Pipeline**.
 
 2. **Create a New Pipeline**
-   - **Pipeline Name**: Provide a name for the pipeline (e.g., `MyNodeJSPipeline`).
+   - **Pipeline Name**: Provide a name for the pipeline (e.g., `MyPHPPipeline`).
    - **Service Role**: Select **Create new role** to let AWS create the necessary permissions for the pipeline.
 
 3. **Set Up Source (GitHub)**
@@ -51,7 +51,7 @@
 
 4. **Configure Build Stage**
    - **Build Provider**: Choose **AWS CodeBuild**.
-   - **Create Build Project**: Provide a name for the project (e.g., `MyNodeJS`).
+   - **Create Build Project**: Provide a name for the project (e.g., `MyPHP`).
    - **Buildspec**: Ensure that a `buildspec.yml` file exists in the root directory of your GitHub repository.
    
 5. **Set Up Deploy Stage**
